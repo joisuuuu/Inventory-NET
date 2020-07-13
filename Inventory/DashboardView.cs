@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Inventory.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,14 @@ using System.Windows.Forms;
 
 namespace Inventory
 {
-    public partial class Form1 : Form
+    public partial class DashboardView : Form
     {
-        public Form1()
+        private DashboardController g_dashboardController;
+
+        public DashboardView()
         {
             InitializeComponent();
+            g_dashboardController = new DashboardController(this);
         }
     }
 }

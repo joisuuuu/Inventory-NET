@@ -1,6 +1,6 @@
-﻿namespace Inventory
+﻿namespace Inventory.View
 {
-    partial class Form1
+    partial class LoginView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.Text = "LoginView";
         }
 
         #endregion
     }
 }
-

@@ -32,9 +32,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>C:\Users\AmellarLT-PC\Downloads\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +58,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller\DashboardController.cs" />
+    <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\RegistrationController.cs" />
+    <Compile Include="DashboardView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DashboardView.Designer.cs">
+      <DependentUpon>DashboardView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\UserProfileView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UserProfileView.Designer.cs">
+      <DependentUpon>UserProfileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistrationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RegistrationView.Designer.cs">
+      <DependentUpon>RegistrationView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DashboardView.resx">
+      <DependentUpon>DashboardView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +104,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\UserProfileView.resx">
+      <DependentUpon>UserProfileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,7 +123,117 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tool\Helpers.csproj">
+      <Project>{092063B4-A33C-4458-8B1B-14D2DBF98EF2}</Project>
+      <Name>Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\white-bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\browser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\001-inventory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-inventory-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\003-packages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004-storage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\005-inventory-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\006-homepage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\007-accounting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\008-profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\009-graph-bar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\010-exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\011-minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\012-maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\013-alarm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\014-alarm-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\015-ad-blocker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\016-lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\017-man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\018-login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\019-logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\020-padlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\021-arrow-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\022-arrow-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\000-inventory.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
