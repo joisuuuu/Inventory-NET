@@ -19,6 +19,8 @@ namespace Inventory.Controller
 
         private bool g_IsSideMenuCollapsed;
 
+        private bool g_HasInitialized = false;
+
         public DashboardController(DashboardView DashboardView)
         {
             g_dashboardView = DashboardView;
@@ -58,6 +60,8 @@ namespace Inventory.Controller
             this.SetupToolTips();
             this.InitializeDefaultView();
             this.InitializeDefaultMenu();
+
+            g_HasInitialized = true;
         }
 
         private void InitializeDefaultMenu()
@@ -68,6 +72,18 @@ namespace Inventory.Controller
         private void ShowHideSubMenus(bool Show)
         {
             g_dashboardView.panelSubMenuUserProfile.Visible = Show;
+
+            if (!Show)
+            {
+                this.SetMenuText();
+                this.UnselectSubMenus();
+            }
+        }
+
+        private void UnselectSubMenus()
+        {
+            g_dashboardView.btnSubMenuLogout.selected = false;
+            g_dashboardView.btnSubMenuUserProfile.selected = false;
         }
 
         private void ShowHideSubMenu(Panel SubMenu)
@@ -160,6 +176,8 @@ namespace Inventory.Controller
         private void btnMenuHome_Click(object sender, EventArgs e)
         {
             HomeView view = new HomeView(); // by Default
+
+            this.ShowHideSubMenus(false);
             this.OpenChildForm(view);
         }
         #endregion
@@ -193,7 +211,12 @@ namespace Inventory.Controller
         {
             g_dashboardView.timerSideMenu.Start();
 
-            if(g_IsSideMenuCollapsed)
+            this.SetMenuText();
+        }
+
+        private void SetMenuText()
+        {
+            if (g_IsSideMenuCollapsed || !g_HasInitialized)
             {
                 // set texts (s)
                 if (g_dashboardView.panelSubMenuUserProfile.Visible)
